@@ -1,0 +1,8 @@
+api-backend/vendor
+api-backend/.idea
+api-backend/Homestead.json
+api-backend/Homestead.yaml
+api-backend/.env
+# api-backend/.env.example
+api-backend/.phpunit.result.cache
+api-backend/.editorconfig
