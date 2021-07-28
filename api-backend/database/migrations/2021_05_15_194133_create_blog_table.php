@@ -9,7 +9,7 @@ class CreateBlogTable extends Migration
     /**
      * Run the migrations.
      *
-     * @return void
+     * @return void 
      */
     public function up()
     {
@@ -22,7 +22,7 @@ class CreateBlogTable extends Migration
             $table->text('text_largo');
             $table->string('image_path');
             $table->dateTime('created_at');
-            $table->dateTime('updated_at')->default(null);
+            $table->dateTime('updated_at')->nullable(true)->default(null);
         });
     }
 

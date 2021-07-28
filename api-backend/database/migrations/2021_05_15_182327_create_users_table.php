@@ -21,7 +21,7 @@ class CreateUsersTable extends Migration
             $table->string('phone', 12);
             $table->bigInteger('tipo_id')->unsigned();
             $table->dateTime('created_at');
-            $table->dateTime('updated_at')->default(null);
+            $table->dateTime('updated_at')->nullable()->default(null);
 
             $table->foreign('tipo_id')
                     ->references('id')
