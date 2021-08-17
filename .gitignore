@@ -6,3 +6,26 @@ api-backend/.env
 # api-backend/.env.example
 api-backend/.phpunit.result.cache
 api-backend/.editorconfig
+
+
+# dependencies - front
+blog/node_modules
+blog/.pnp
+.pnp.js
+
+# testing
+blog/coverage
+
+# production
+blog/build
+
+# misc
+blog/.DS_Store
+blog/.env.local
+blog/.env.development.local
+blog/.env.test.local
+blog/.env.production.local
+
+blog/npm-debug.log*
+blog/yarn-debug.log*
+blog/yarn-error.log*
