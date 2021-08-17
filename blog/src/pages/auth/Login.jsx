@@ -18,10 +18,10 @@ import { LockOutlined } from '@material-ui/icons'
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        // minHeight: '90vh'
+        minHeight: '100vh'
     },
     loginCustom: {
-      marginTop: theme.spacing(9),
+      marginTop: theme.spacing(11),
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
@@ -42,6 +42,9 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: '#004d40'
         }
     },
+    errorCustom: {
+        color: '#d50000'
+    }
 }));
 
 const Login = () => {
@@ -78,8 +81,8 @@ const Login = () => {
                             id="email"
                             autoComplete="off"
                         />
-                        {errors.email?.type === 'required' && "el campo email se encuentra vacio"}
-                        {errors.email?.type === 'pattern' && "valida el correo colocado"}
+                        {errors.email?.type === 'required' && (<p className={classes.errorCustom}>El campo email se encuentra vacio</p>)}
+                        {errors.email?.type === 'pattern' && (<p className={classes.errorCustom}>Valida el correo ingresado</p>)}
 
                         <TextField
                             {...register('password', { required: true }) }
@@ -93,7 +96,7 @@ const Login = () => {
                             id="password"
                             autoComplete="current-password"
                         />
-                        {errors.password?.type === 'required' && "el campo password se encuentra vacio"}
+                        {errors.password?.type === 'required' && (<p className={classes.errorCustom}>El campo password se encuetra vacio</p>)}
 
                         <br />
                         <FormControlLabel
@@ -117,7 +120,7 @@ const Login = () => {
                             </Grid>
                             <Grid item>
                                 <Link to='/auth/registrar'>
-                                    {"Aún no tienes cuenta? Registrate!"}
+                                    Aún no tienes cuenta? Registrate!
                                 </Link>
                             </Grid>
                         </Grid>
@@ -127,6 +130,5 @@ const Login = () => {
         </div>
     )
 }
-
 
 export default Login

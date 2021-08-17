@@ -40,6 +40,9 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: '#004d40'
         }
     },
+    errorCustom: {
+        color: '#d50000'
+    }
 }));
 
 const Register = () => {
@@ -75,10 +78,10 @@ const Register = () => {
                             type='text'
                             autoComplete='off'
                         />
-                        {errors.nombres?.type === 'required' && "el campo nombres se encuentra vacio"}
+                        {errors.nombres?.type === 'required' && (<p className={classes.errorCustom}>El campo nombres se encuentra vacio</p>)}
 
                         <TextField
-                            {...register('email', { required: true })}
+                            {...register('email', { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })}
                             name='email'
                             size='small'
                             variant='outlined'
@@ -89,7 +92,8 @@ const Register = () => {
                             id='email'
                             autoComplete='off'
                         />
-                        {errors.email?.type === 'required' && "el campo email se encuentra vacio"}
+                        {errors.email?.type === 'required' && (<p className={classes.errorCustom}>El campo email se encuentra vacio</p>)}
+                        {errors.email?.type === 'pattern' && (<p className={classes.errorCustom}>Valida el correo ingresado</p>)}
 
                         <TextField
                             {...register('phone', { required: true })}
@@ -103,7 +107,7 @@ const Register = () => {
                             id='phone'
                             autoComplete='off'
                         />
-                        {errors.phone?.type === 'required' && "el campo phone se encuentra vacio"}
+                        {errors.phone?.type === 'required' && (<p className={classes.errorCustom}>El campo phone se encuentra vacio</p>)}
 
                         <TextField
                             {...register('password', { required: true })}
@@ -117,7 +121,7 @@ const Register = () => {
                             id='password'
                             autoComplete='current-password'
                         />
-                        {errors.password?.type === 'required' && "el campo password se encuentra vacio"}
+                        {errors.password?.type === 'required' && (<p className={classes.errorCustom}>El campo password se encuentra vacio"</p>)}
 
                         <Button
                             type='submit'

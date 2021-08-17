@@ -20,7 +20,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @var string
      */
-    // protected $table = 'users';
+    protected $table = 'users';
 
     /**
      * The attributes that are mass assignable.
@@ -57,7 +57,12 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      */
     public function getJWTCustomClaims()
     {
-        return [];
+        return [
+            'data' => [
+                'name' => $this->name,
+                'email' => $this->email,
+            ]
+        ];
     }
 
     public function tipo()

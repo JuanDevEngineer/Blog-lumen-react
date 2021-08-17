@@ -1,3 +1,6 @@
+.DS_Store
+
+api-backend/.DS_Store
 api-backend/vendor
 api-backend/.idea
 api-backend/Homestead.json
@@ -29,3 +32,4 @@ blog/.env.production.local
 blog/npm-debug.log*
 blog/yarn-debug.log*
 blog/yarn-error.log*
+blog/.DS_Store

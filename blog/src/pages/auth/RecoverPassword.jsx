@@ -1,5 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+
+import { useForm } from 'react-hook-form'
+
 import {
     Container,
     Typography,
@@ -37,11 +40,20 @@ const useStyles = makeStyles((theme) => ({
             backgroundColor: '#004d40'
         }
     },
+    errorCustom: {
+        color: '#d50000'
+    }
   }));
 
 const RecoverPassword = () => {
 
-    const classes = useStyles();
+    const classes = useStyles()
+
+    const { register, formState: { errors }, handleSubmit } = useForm()
+
+    const handleDataSubmit = (data) => {
+        console.log(data)
+    }
 
     return (
         <div className={classes.root}>
@@ -54,18 +66,21 @@ const RecoverPassword = () => {
                     <Typography component="h1" variant="h5">
                         Recuperar Contraseña
                     </Typography>
-                    <form className={classes.form} noValidate>
+                    <form className={classes.form} onSubmit={handleSubmit(handleDataSubmit)}>
                         <TextField
+                            {...register('email', { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ }) }
                             size='small'
                             variant="outlined"
                             margin="normal"
-                            required
                             fullWidth
                             id="email"
                             label="Email"
                             name="email"
-                            autoComplete="email"
+                            autoComplete="off"
                         />
+                        {errors.email?.type === 'required' && (<p className={classes.errorCustom}>El campo email se encuentra vacio</p>)}
+                        {errors.email?.type === 'pattern' && (<p className={classes.errorCustom}>Valida el correo ingresa</p>)}
+
 
                         <Button
                             type="submit"

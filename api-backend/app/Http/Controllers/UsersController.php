@@ -82,7 +82,6 @@ class UsersController extends Controller
     }
 
     public function showByIdUser($id) {
-
         $user = User::find($id);
         if (empty($user)) {
             return response()->json(['data' => []], 200);
