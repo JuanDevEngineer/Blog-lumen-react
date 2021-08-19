@@ -1,5 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
 
 import { useForm } from 'react-hook-form'
 
@@ -49,12 +50,15 @@ const useStyles = makeStyles((theme) => ({
 
 const Login = () => {
 
-    const classes = useStyles();
+    const classes = useStyles()
+
+    const dispatch = useDispatch()
 
     const { register, formState: { errors }, handleSubmit } = useForm()
 
     const handleDataSubmit = (data) => {
         console.log(data)
+
     }
 
     return (

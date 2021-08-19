@@ -1,10 +1,16 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+
 import BlogApp from './BlogApp'
+import { store } from './redux/store'
+
 // import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-    <BlogApp />,
+    <Provider store={store}>
+        <BlogApp />
+    </Provider>,
     document.getElementById('root')
 )
 
