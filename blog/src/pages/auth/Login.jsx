@@ -1,6 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
+// import { useDispatch } from 'react-redux'
 
 import { useForm } from 'react-hook-form'
 
@@ -16,6 +16,7 @@ import {
     FormControlLabel,
     Checkbox } from '@material-ui/core'
 import { LockOutlined } from '@material-ui/icons'
+import Service from '../../helpers/Service'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -52,13 +53,13 @@ const Login = () => {
 
     const classes = useStyles()
 
-    const dispatch = useDispatch()
+    // const dispatch = useDispatch()
 
     const { register, formState: { errors }, handleSubmit } = useForm()
 
-    const handleDataSubmit = (data) => {
-        console.log(data)
-
+    const handleDataSubmit = async (data) => {
+        const response = await Service.fetchServericeDown('/auth/login', data, 'POST')
+        console.log(response)
     }
 
     return (

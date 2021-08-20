@@ -1,22 +1,45 @@
+import api from '../config/configAxios'
+
 class Service {
+
     constructor() {
-        super()
-        this.token = localStorage.getItem('token')
+        this.token = localStorage.getItem('token') || ''
     }
 
-    async fetchServericeUp(enpoint) {
-        try {
-            
-        } catch (error) {
-            console.log(error)
+    fetchServericeUp(enpoint, data, method = 'GET') {
+        if(method === 'GET') {
+            return api.get(enpoint, {
+                headers: {
+                    'Authorization': `Bearer ${this.token}`
+                },
+                data: data
+            })
+        } else {
+            return api.request({
+                method: method,
+                url: enpoint,
+                headers: {
+                    'Authorization': `Bearer ${this.token}`
+                },
+                data: data
+            })
         }
     }
 
-    fetchServericeDown(enpoint) {
-        
-        return data
+    fetchServericeDown(enpoint, data, method = 'GET') {
+        if(method === 'GET') {
+            return api.get(enpoint, {
+                data: data
+            })
+        } else {
+            return api.request({
+                method: method,
+                url: enpoint,
+                data: data
+            })
+        }
     }
 
 }
 
-export default new Service;
+export default new Service()

@@ -1,29 +1,14 @@
 import axios from 'axios'
 
-const BASE_URL = 'localhost:9090/v1/'
+const BASE_URL = 'http://localhost:9090/v1/api'
 
-export const apiAuthorize = (token = '') => {
-    let api = null
-    
-    if(token !== '') {
-        api = axios.create({
-            baseURL: BASE_URL,
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'apllication/json',
-                'Authorization': `Bearer ${token}`
-            }
-        });
-    } else {
-        api = axios.create({
-            baseURL: BASE_URL,
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'apllication/json',
-            }
-        });
+const api = axios.create({
+    baseURL: BASE_URL,
+    headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+        'accept': 'application/json'
     }
-    
+});
 
-    return api
-}
+export default api
