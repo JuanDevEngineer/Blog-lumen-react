@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Hash;
 use Tymon\JWTAuth\Exceptions\JWTException;
 use Tymon\JWTAuth\Facades\JWTAuth;
@@ -32,25 +33,25 @@ class AuthController extends Controller
         // Check if field is empty
         if (empty($name) or empty($email) or empty($password) or empty($phone) or empty($tipo_id)) 
         {
-            return response()->json(['status' => 'error', 'message' => 'You must fill all the fields']);
+            return response()->json(['status' => 'error', 'message' => 'You must fill all the fields'], Response::HTTP_BAD_REQUEST);
         }
 
         // Check if email is valid
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
         {
-            return response()->json(['status' => 'error', 'message' => 'You must enter a valid email']);
+            return response()->json(['status' => 'error', 'message' => 'You must enter a valid email'], Response::HTTP_BAD_REQUEST);
         }
 
         // Check if password is greater than 5 character
         if (strlen($password) < 6) 
         {
-            return response()->json(['status' => 'error', 'message' => 'Password should be min 6 character']);
+            return response()->json(['status' => 'error', 'message' => 'Password should be min 6 character'], Response::HTTP_BAD_REQUEST);
         }
 
         // Check if user already exist
         if (User::where('email', '=', $email)->exists()) 
         {
-            return response()->json(['status' => 'error', 'message' => 'User already exists with this email']);
+            return response()->json(['status' => 'error', 'message' => 'User already exists with this email'], Response::HTTP_BAD_REQUEST);
         }
 
         // Create new user
@@ -67,7 +68,7 @@ class AuthController extends Controller
 
             if ($user->save()) 
             {
-                return response()->json(['status' => 'success', 'message' => 'user create'], 201);
+                return response()->json(['status' => 'success', 'message' => 'user create'], Response::HTTP_CREATED);
             }
         } catch (\Exception $e) {
             return response()->json(['status' => 'error', 'message' => $e->getMessage()]);
