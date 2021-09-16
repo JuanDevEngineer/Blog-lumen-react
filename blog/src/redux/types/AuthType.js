@@ -1,4 +1,5 @@
 export const AUTH_LOGIN = 'LOGIN_AUTH'
+export const AUTH_STATUS = 'AUTH_STATUS'
 export const LOGIN_AUTH_ERROR = 'LOGIN_AUTH_ERROR'
 export const AUTH_LOGIN_REFRESH = 'LOGIN_AUTH_REFRESH'
 export const AUTH_LOGIN_OUT = 'LOGIN_AUTH_OUT'

@@ -8,6 +8,9 @@
         "php": "^7.3|^8.0",
         "flipbox/lumen-generator": "^8.2",
         "fruitcake/laravel-cors": "^2.0",
+        "guzzlehttp/guzzle": "^7.3",
+        "illuminate/mail": "^8.55",
+        "illuminate/notifications": "^8.55",
         "laravel/lumen-framework": "^8.0",
         "tymon/jwt-auth": "^1.0"
     },

@@ -12,6 +12,9 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
+
+    protected $tipo_id = 1; // user
+
     /**
      * Create a new AuthController instance.
      *
@@ -26,32 +29,32 @@ class AuthController extends Controller
     {
         $name = $request->name;
         $email = $request->email;
-        $password = $request->password;
         $phone = $request->phone;
-        $tipo_id = $request->tipo_id;
+        $password = $request->password;
+        
 
         // Check if field is empty
-        if (empty($name) or empty($email) or empty($password) or empty($phone) or empty($tipo_id)) 
+        if (empty($name) or empty($email) or empty($password) or empty($phone)) 
         {
-            return response()->json(['status' => 'error', 'message' => 'You must fill all the fields'], Response::HTTP_BAD_REQUEST);
+            return response()->json(['status' => 'error', 'message' => 'You must fill all the fields'], Response::HTTP_OK);
         }
 
         // Check if email is valid
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) 
         {
-            return response()->json(['status' => 'error', 'message' => 'You must enter a valid email'], Response::HTTP_BAD_REQUEST);
+            return response()->json(['status' => 'error', 'message' => 'You must enter a valid email'], Response::HTTP_OK);
         }
 
         // Check if password is greater than 5 character
         if (strlen($password) < 6) 
         {
-            return response()->json(['status' => 'error', 'message' => 'Password should be min 6 character'], Response::HTTP_BAD_REQUEST);
+            return response()->json(['status' => 'error', 'message' => 'Password should be min 6 character'], Response::HTTP_OK);
         }
 
         // Check if user already exist
         if (User::where('email', '=', $email)->exists()) 
         {
-            return response()->json(['status' => 'error', 'message' => 'User already exists with this email'], Response::HTTP_BAD_REQUEST);
+            return response()->json(['status' => 'error', 'message' => 'User already exists with this email'], Response::HTTP_OK);
         }
 
         // Create new user
@@ -62,7 +65,7 @@ class AuthController extends Controller
             $user->email = $request->email;
             $user->password = Hash::make($request->password);
             $user->phone = $request->phone;
-            $user->tipo_id = $request->tipo_id;
+            $user->tipo_id = $this->tipo_id;
             // $user->password = Crypt::encrypt($request->password);
             // $user->password = app('hash')->make($request->password);
 

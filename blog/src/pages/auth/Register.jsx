@@ -14,6 +14,7 @@ import {
     Grid
 } from '@material-ui/core'
 import { Group } from '@material-ui/icons'
+import Service from '../../helpers/Service'
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -48,10 +49,17 @@ const useStyles = makeStyles((theme) => ({
 const Register = () => {
 
     const classes = useStyles()
-    const { register, formState: { errors }, handleSubmit } = useForm()
+    const { register, formState: { errors }, handleSubmit, reset } = useForm()
 
-    const handleDataSubmit = (data) => {
-        console.log(data)
+    const handleDataSubmit = async (data) => {
+        const response = await Service.fetchServericeDown('/auth/register', data, 'POST')
+        console.log(response.data.token)
+        reset({
+            'name': '',
+            'email': '',
+            'phone': '',
+            'password': ''
+        })
     }
 
     return (
@@ -67,24 +75,22 @@ const Register = () => {
                     </Typography>
                     <form className={classes.form} onSubmit={handleSubmit(handleDataSubmit)}>
                         <TextField
-                            {...register('nombres', { required: true })}
-                            name='nombres'
+                            {...register('name', { required: true })}
+                            name='name'
                             size='small'
-                            variant='outlined'
                             margin='normal'
                             fullWidth
-                            id='nombres'
+                            id='name'
                             label='Nombres'
                             type='text'
                             autoComplete='off'
                         />
-                        {errors.nombres?.type === 'required' && (<p className={classes.errorCustom}>El campo nombres se encuentra vacio</p>)}
+                        {errors.name?.type === 'required' && (<p className={classes.errorCustom}>El campo nombres se encuentra vacio</p>)}
 
                         <TextField
                             {...register('email', { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })}
                             name='email'
                             size='small'
-                            variant='outlined'
                             margin='normal'
                             fullWidth
                             label='Email'
@@ -96,24 +102,25 @@ const Register = () => {
                         {errors.email?.type === 'pattern' && (<p className={classes.errorCustom}>Valida el correo ingresado</p>)}
 
                         <TextField
-                            {...register('phone', { required: true })}
+                            {...register('phone', { required: true, maxLength: 10})}
                             name='phone'
                             size='small'
-                            variant='outlined'
                             margin='normal'
                             fullWidth
                             label='Phone'
-                            type='text'
+                            type='number'
                             id='phone'
                             autoComplete='off'
                         />
                         {errors.phone?.type === 'required' && (<p className={classes.errorCustom}>El campo phone se encuentra vacio</p>)}
+                        {errors.phone?.type === 'maxLength' && (<p className={classes.errorCustom}>min</p>)}
+                        {errors.phone?.type === 'min' && (<p className={classes.errorCustom}>min</p>)}
+                        {errors.phone?.type === 'max' && (<p className={classes.errorCustom}>max</p>)}
 
                         <TextField
                             {...register('password', { required: true })}
                             name='password'
                             size='small'
-                            variant='outlined'
                             margin='normal'
                             fullWidth
                             label='Password'

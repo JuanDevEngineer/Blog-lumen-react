@@ -1,8 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import { useDispatch } from 'react-redux'
+import { useDispatch } from 'react-redux'
 
 import { useForm } from 'react-hook-form'
+
+import { loginApp } from '../../redux/actions/auth'
 
 import {
     Container,
@@ -53,13 +55,15 @@ const Login = () => {
 
     const classes = useStyles()
 
-    // const dispatch = useDispatch()
+    const dispatch = useDispatch()
 
     const { register, formState: { errors }, handleSubmit } = useForm()
 
     const handleDataSubmit = async (data) => {
         const response = await Service.fetchServericeDown('/auth/login', data, 'POST')
-        console.log(response)
+        const token = response.data.token
+        localStorage.setItem('token', token)
+        dispatch(loginApp(token))
     }
 
     return (

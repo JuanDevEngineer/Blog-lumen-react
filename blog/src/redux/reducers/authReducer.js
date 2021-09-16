@@ -11,7 +11,15 @@ const authReducer = (state = initState, action) => {
         case type_auth.AUTH_LOGIN:
             return {
                 ...state,
-                user_current: action.payload.user,
+                user_current: action.payload.userCurrent,
+                isAuthenticaded: true,
+                errorsApi: null
+            }
+        
+        case type_auth.AUTH_STATUS:
+            return {
+                ...state,
+                user_current: localStorage.getItem('token'),
                 isAuthenticaded: true,
                 errorsApi: null
             }

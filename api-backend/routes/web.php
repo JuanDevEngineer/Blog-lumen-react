@@ -15,10 +15,10 @@
 
 $router->group(['prefix' => 'v1'], function() use ($router) {
     
-    $router->post('/api/auth/register', 'AuthController@register');
+    $router->post('/api/auth/register', 'AuthController@register'); // ->withoutMiddleware('auth:api');
     $router->post('/api/auth/login', 'AuthController@login');
 
-    $router->group(['middleware' => 'auth'], function() use ($router) {
+    $router->group(['middleware' => 'auth:api'], function() use ($router) {
 
         $router->post('/api/auth/logout', 'AuthController@logout');
 

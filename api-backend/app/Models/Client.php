@@ -14,9 +14,10 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordInterface;
 
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordInterface, JWTSubject 
+class Client extends Model implements AuthenticatableContract, AuthorizableContract, CanResetPasswordInterface, JWTSubject 
 {
-    use Authenticatable, Authorizable, HasFactory, Notifiable;
+    use Authenticatable, Authorizable, HasFactory;
+    use Notifiable;
     use CanResetPasswordTrait;
 
     /**
@@ -24,25 +25,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @var string
      */
-    protected $table = 'users';
-
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'name', 'email', 'phone', 'created_at'
-    ];
-
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'password', 'tipo_id', 'updated_at'
-    ];
+    protected $table = 'clients';
 
     /**
      * Get the identifier that will be stored in the subject claim of the JWT.
@@ -62,16 +45,7 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function getJWTCustomClaims()
     {
         return [
-            'data' => [
-                'name' => $this->name,
-                'email' => $this->email,
-            ]
+            'data' => []
         ];
     }
-
-    public function tipo()
-    {
-        return $this->hasOne(TipoUsuario::class, "id", "tipo_id");
-    }
-
 }
