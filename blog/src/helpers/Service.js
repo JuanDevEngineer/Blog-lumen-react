@@ -6,13 +6,13 @@ class Service {
         this.token = localStorage.getItem('token') || ''
     }
 
-    fetchServericeUp(enpoint, data, method = 'GET') {
+    fetchServericeUp(enpoint, data = {}, method = 'GET') {
         if(method === 'GET') {
             return api.get(enpoint, {
                 headers: {
                     'Authorization': `Bearer ${this.token}`
                 },
-                data: data
+                data: data || {}
             })
         } else {
             return api.request({
@@ -21,7 +21,7 @@ class Service {
                 headers: {
                     'Authorization': `Bearer ${this.token}`
                 },
-                data: data
+                data: data || {}
             })
         }
     }
@@ -29,13 +29,13 @@ class Service {
     fetchServericeDown(enpoint, data, method = 'GET') {
         if(method === 'GET') {
             return api.get(enpoint, {
-                data: data
+                data: data || {}
             })
         } else {
             return api.request({
                 method: method,
                 url: enpoint,
-                data: data
+                data: data || {}
             })
         }
     }

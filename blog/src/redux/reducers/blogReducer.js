@@ -6,12 +6,22 @@ const initState = {
 }
 
 const blogReducer = (state = initState, action) => {
+    
     switch (action.type) {
+        case type_blog.LOANDING_INIT_BLOGS:
+            return {
+                ...state,
+                loading: action.payload
+            }
         case type_blog.LOAD_BLOGS:
             return {
                 ...state,
                 blogs: [ ...action.payload ],
-                loading: action.loading
+            }
+        case type_blog.LOANDING_FINISH_BLOGS:
+            return {
+                ...state,
+                loading: action.payload
             }
     
         default:

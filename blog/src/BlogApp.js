@@ -13,7 +13,7 @@ function BlogApp() {
 
     useEffect(() => {
         dispatch(statusSession())
-        return () => {}
+
     }, [dispatch])
 
     return (

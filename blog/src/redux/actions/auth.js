@@ -11,7 +11,25 @@ export const loginApp = (token) => ({
     }
 })
 
-export const statusSession = () => ({
-    type: type_auth.AUTH_STATUS
+export const statusSession = () => {
+    if(localStorage.getItem('token') == null) {
+        return {
+            type: type_auth.AUTH_LOGIN_OUT,
+        }
+    } else {
+        return {
+            type: type_auth.AUTH_STATUS,
+            payload: {
+                userCurrent: localStorage.getItem('token'),
+            }
+        }
+    }
+}
+
+export const loginAppError = (data) => ({
+    type: type_auth.LOGIN_AUTH_ERROR,
+    payload: {
+        errors: data
+    }
 })
 

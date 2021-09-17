@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux'
 
 import { useForm } from 'react-hook-form'
 
-import { loginApp } from '../../redux/actions/auth'
+import { loginApp, loginAppError } from '../../redux/actions/auth'
 
 import {
     Container,
@@ -61,9 +61,16 @@ const Login = () => {
 
     const handleDataSubmit = async (data) => {
         const response = await Service.fetchServericeDown('/auth/login', data, 'POST')
-        const token = response.data.token
-        localStorage.setItem('token', token)
-        dispatch(loginApp(token))
+        console.log(response.data)
+        if(response.data?.status === 'error') {
+            localStorage.removeItem('token')
+            dispatch(loginAppError(response.data))
+        } else {
+            const token = response.data.token
+            localStorage.setItem('token', token)
+            dispatch(loginApp(token))
+        }
+       
     }
 
     return (

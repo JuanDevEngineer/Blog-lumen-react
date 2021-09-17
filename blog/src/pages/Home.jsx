@@ -1,4 +1,5 @@
-import React from 'react'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import NavBar from '../components/ui/NavBar'
 import {
     CssBaseline,
@@ -29,6 +30,14 @@ const useStyles = makeStyles((theme) => ({
 const Home = () => {
 
     const classes = useStyles()
+
+    const state = useSelector(state => state)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        // dispatch()
+        return () => {}
+    }, [dispatch])
 
     return (
         <div className={classes.root}>
