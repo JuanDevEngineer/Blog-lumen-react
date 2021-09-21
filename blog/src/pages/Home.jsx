@@ -1,5 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+
+import { getBlogsFetch } from '../redux/actions/blogActions' 
+
 import NavBar from '../components/ui/NavBar'
 import {
     CssBaseline,
@@ -31,13 +34,20 @@ const Home = () => {
 
     const classes = useStyles()
 
-    const state = useSelector(state => state)
+    const state = useSelector(state => state.blog)
     const dispatch = useDispatch()
 
     useEffect(() => {
-        // dispatch()
+        dispatch(getBlogsFetch())
         return () => {}
     }, [dispatch])
+
+
+    if(state.blogs.loading) {
+        return (
+            <div>Cargando...</div>
+        )
+    }
 
     return (
         <div className={classes.root}>
@@ -70,20 +80,28 @@ const Home = () => {
                                 Lorem ipsum dolor sit amet
                             </Typography>
                             <Button variant='outlined' color='secondary'>
-                                Hello world
+                                Hello world 1
                             </Button>
                         </Container>
                     </Grid>
                 </Grid>
             </div>
             <div className={classes.page} style={{backgroundColor: 'white'}} >
-                <Typography>
-                    Hello world
-                </Typography>
+                <ul>
+                    { state.blogs.length > 0 ? 
+                        (
+                            state.blogs.map((item, index) => (
+                                <li key={index}> {item.titulo} </li>
+                            ))
+                        ) : (
+                            <Typography>Se encuentra Vacio</Typography>
+                        )
+                    } 
+                </ul>
             </div>
             <div className={classes.page} style={{backgroundColor: 'black'}} >
                 <Typography>
-                    Hello world
+                    Hello world 3
                 </Typography>
             </div>
         </div>

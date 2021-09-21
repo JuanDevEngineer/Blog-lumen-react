@@ -16,7 +16,7 @@ const blogReducer = (state = initState, action) => {
         case type_blog.LOAD_BLOGS:
             return {
                 ...state,
-                blogs: [ ...action.payload ],
+                blogs: [ ...action.payload.data ],
             }
         case type_blog.LOANDING_FINISH_BLOGS:
             return {

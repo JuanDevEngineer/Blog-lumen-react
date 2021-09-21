@@ -32,9 +32,9 @@ const useStyles = makeStyles((theme) => ({
 const NavBar = () => {
     
     const classes = useStyles()
-    const arrCssCustom = [ classes.btnCustom, classes.customMenu ]
+    // const arrCssCustom = [ classes.btnCustom, classes.customMenu ]
     
-    console.log(arrCssCustom.join(" ").toString())
+    // console.log(arrCssCustom.join(" ").toString())
     return (
         <AppBar position='fixed' className={classes.root} elevation={0}>
             <Toolbar className={classes.customNavbar}>
