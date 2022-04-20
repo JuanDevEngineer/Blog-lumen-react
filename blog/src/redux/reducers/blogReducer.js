@@ -6,7 +6,7 @@ const initState = {
 }
 
 const blogReducer = (state = initState, action) => {
-    
+
     switch (action.type) {
         case type_blog.LOANDING_INIT_BLOGS:
             return {
@@ -16,14 +16,14 @@ const blogReducer = (state = initState, action) => {
         case type_blog.LOAD_BLOGS:
             return {
                 ...state,
-                blogs: [ ...action.payload.data ],
+                blogs: [...action.payload.data],
             }
         case type_blog.LOANDING_FINISH_BLOGS:
             return {
                 ...state,
                 loading: action.payload
             }
-    
+
         default:
             return state
     }

@@ -19,7 +19,6 @@ $router->group(['prefix' => 'v1'], function() use ($router) {
     $router->post('/api/auth/login', 'AuthController@login');
 
     $router->group(['middleware' => 'auth:api'], function() use ($router) {
-
         $router->post('/api/auth/logout', 'AuthController@logout');
 
         $router->get('/api/categorias', 'CaterogoriasController@index');

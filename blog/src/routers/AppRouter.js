@@ -11,26 +11,25 @@ const AppRouter = () => {
         <>
             <Router>
                 <Switch>
-
-                    <Route 
+                    <Route
                         exact
                         path='/home'
-                        render={(props) => <Home {...props} />}
+                        render={(props) => <Home {...props} />}a
                     />
 
-                    <Route 
+                    <Route
                         exact
                         path='/auth/registrar'
                         render={(props) => <Register {...props} />}
                     />
 
-                    <Route 
+                    <Route
                         exact
                         path='/auth/login'
                         render={(props) => <Login {...props} />}
                     />
-                    
-                    <Route 
+
+                    <Route
                         exact
                         path='/auth/recover-password'
                         render={(props) => <RecoverPassword {...props} />}

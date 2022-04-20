@@ -1,7 +1,6 @@
 import React from 'react'
 
 import { useForm } from 'react-hook-form'
-
 import { Link } from 'react-router-dom'
 import {
     Container,
@@ -54,12 +53,12 @@ const Register = () => {
     const handleDataSubmit = async (data) => {
         const response = await Service.fetchServericeDown('/auth/register', data, 'POST')
         console.log(response.data.token)
-        reset({
-            'name': '',
-            'email': '',
-            'phone': '',
-            'password': ''
-        })
+        // reset({
+        //     'name': '',
+        //     'email': '',
+        //     'phone': '',
+        //     'password': ''
+        // })
     }
 
     return (
@@ -102,7 +101,7 @@ const Register = () => {
                         {errors.email?.type === 'pattern' && (<p className={classes.errorCustom}>Valida el correo ingresado</p>)}
 
                         <TextField
-                            {...register('phone', { required: true, maxLength: 10})}
+                            {...register('phone', { required: true, maxLength: 10 })}
                             name='phone'
                             size='small'
                             margin='normal'

@@ -98,7 +98,7 @@ const RecoverPassword = () => {
                             </Grid>
                             <Grid item>
                                 <Link to='/auth/register'>
-                                    {"Aún no tienes cuenta? Registrate!"}
+                                    Aún no tienes cuenta? Registrate!
                                 </Link>
                             </Grid>
                         </Grid>

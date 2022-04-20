@@ -28,8 +28,8 @@ export const getBlogs = (data) => ({
 export const getBlogsFetch =  () => {
     return async (dispatch) => {
         dispatch(loandingInit())
-        const response = await Service.fetchServericeUp('/blog')
-        dispatch(getBlogs(response.data))
+            const response = await Service.fetchServericeUp('/blog')
+            dispatch(getBlogs(response.data))
         dispatch(loandingEnd())
     }
 }

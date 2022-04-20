@@ -33,3 +33,6 @@ blog/npm-debug.log*
 blog/yarn-debug.log*
 blog/yarn-error.log*
 blog/.DS_Store
+
+#env
+blog/.env.production

@@ -46,7 +46,7 @@ const NavBar = () => {
                 <Typography variant='h5'>
                     Blog
                 </Typography>
-                <IconButton className={classes.customMenu}>
+                <IconButton className={classes.customMenu} >
                     <Link to="/auth/login" className={classes.btnCustom}>
                         <Sort />
                     </Link>

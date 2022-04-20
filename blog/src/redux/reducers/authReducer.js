@@ -8,7 +8,7 @@ const initState = {
 
 const authReducer = (state = initState, action) => {
     switch (action.type) {
-        
+
         case type_auth.AUTH_LOGIN:
             return {
                 ...state,
@@ -16,7 +16,7 @@ const authReducer = (state = initState, action) => {
                 isAuthenticaded: true,
                 errorsApi: null
             }
-        
+
         case type_auth.AUTH_STATUS:
             return {
                 ...state,
@@ -30,7 +30,7 @@ const authReducer = (state = initState, action) => {
                 ...state,
                 errorsApi: action.payload.errors
             }
-            
+
         case type_auth.AUTH_LOGIN_OUT:
             return {
                 ...state,
@@ -38,7 +38,7 @@ const authReducer = (state = initState, action) => {
                 isAuthenticaded: false,
                 errorsApi: null
             }
-            
+
         default:
             return state
     }

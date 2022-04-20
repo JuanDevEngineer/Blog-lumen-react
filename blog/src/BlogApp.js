@@ -10,10 +10,8 @@ import './app.css'
 function BlogApp() {
 
     const dispatch = useDispatch()
-
     useEffect(() => {
         dispatch(statusSession())
-
     }, [dispatch])
 
     return (

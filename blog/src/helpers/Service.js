@@ -1,4 +1,4 @@
-import api from '../config/configAxios'
+import api from '../config/axios/configAxios'
 
 class Service {
 
@@ -12,7 +12,7 @@ class Service {
                 headers: {
                     'Authorization': `Bearer ${this.token}`
                 },
-                data: data || {}
+                data: data
             })
         } else {
             return api.request({
@@ -21,21 +21,21 @@ class Service {
                 headers: {
                     'Authorization': `Bearer ${this.token}`
                 },
-                data: data || {}
+                data: data
             })
         }
     }
 
-    fetchServericeDown(enpoint, data, method = 'GET') {
+    fetchServericeDown(enpoint, data = {}, method = 'GET') {
         if(method === 'GET') {
             return api.get(enpoint, {
-                data: data || {}
+                data: data
             })
         } else {
             return api.request({
                 method: method,
                 url: enpoint,
-                data: data || {}
+                data: data
             })
         }
     }

@@ -1,14 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-
 import { useForm } from 'react-hook-form'
-
-import { loginApp, loginAppError } from '../../redux/actions/auth'
-
 import {
     Container,
-    Typography, 
+    Typography,
     makeStyles,
     CssBaseline,
     TextField,
@@ -16,7 +12,9 @@ import {
     Button,
     Grid,
     FormControlLabel,
-    Checkbox } from '@material-ui/core'
+    Checkbox
+} from '@material-ui/core'
+import { loginApp, loginAppError } from '../../redux/actions/auth'
 import { LockOutlined } from '@material-ui/icons'
 import Service from '../../helpers/Service'
 
@@ -25,23 +23,23 @@ const useStyles = makeStyles((theme) => ({
         minHeight: '100vh'
     },
     loginCustom: {
-      marginTop: theme.spacing(11),
-      display: 'flex',
-      flexDirection: 'column',
-      alignItems: 'center',
+        marginTop: theme.spacing(11),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
     },
     avatarCustom: {
-      margin: theme.spacing(1),
-      backgroundColor: '#009688',
+        margin: theme.spacing(1),
+        backgroundColor: '#009688',
     },
     form: {
-      width: '100%', // Fix IE 11 issue.
-      marginTop: theme.spacing(1),
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(1),
     },
     btnCustom: {
-      margin: theme.spacing(3, 0, 2),
-      color: '#fff',
-      backgroundColor: '#009688',
+        margin: theme.spacing(3, 0, 2),
+        color: '#fff',
+        backgroundColor: '#009688',
         '&:hover': {
             backgroundColor: '#004d40'
         }
@@ -49,20 +47,18 @@ const useStyles = makeStyles((theme) => ({
     errorCustom: {
         color: '#d50000'
     }
-}));
+}))
 
 const Login = () => {
 
     const classes = useStyles()
-
     const dispatch = useDispatch()
-
     const { register, formState: { errors }, handleSubmit } = useForm()
 
     const handleDataSubmit = async (data) => {
         const response = await Service.fetchServericeDown('/auth/login', data, 'POST')
         console.log(response.data)
-        if(response.data?.status === 'error') {
+        if (response.data?.status === 'error') {
             localStorage.removeItem('token')
             dispatch(loginAppError(response.data))
         } else {
@@ -70,7 +66,7 @@ const Login = () => {
             localStorage.setItem('token', token)
             dispatch(loginApp(token))
         }
-       
+
     }
 
     return (
@@ -79,14 +75,14 @@ const Login = () => {
                 <CssBaseline />
                 <div className={classes.loginCustom}>
                     <Avatar className={classes.avatarCustom}>
-                        <LockOutlined/>
+                        <LockOutlined />
                     </Avatar>
                     <Typography component="h1" variant="h5">
                         Login
                     </Typography>
                     <form className={classes.form} onSubmit={handleSubmit(handleDataSubmit)}>
                         <TextField
-                            {...register('email', { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ }) }
+                            {...register('email', { required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ })}
                             name='email'
                             size='small'
                             variant="outlined"
@@ -101,7 +97,7 @@ const Login = () => {
                         {errors.email?.type === 'pattern' && (<p className={classes.errorCustom}>Valida el correo ingresado</p>)}
 
                         <TextField
-                            {...register('password', { required: true }) }
+                            {...register('password', { required: true })}
                             name='password'
                             size='small'
                             variant="outlined"
